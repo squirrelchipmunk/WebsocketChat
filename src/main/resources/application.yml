@@ -1,0 +1,32 @@
+server:
+  port: 8088
+  servlet:
+    context-path: /
+
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+      
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+      
+  devtools:
+    restart:
+      enabled: false
+
+  datasource:
+    url: jdbc:oracle:thin:@127.0.0.1:1521:XE
+    username: sb
+    password: sb
+    driver-class-name: oracle.jdbc.OracleDriver
+    
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: update #create : 서버 실행 시 삭제 후 생성 , update : 변경된 경우 자동 실행
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      use-new-id-generator-mappings: false         
