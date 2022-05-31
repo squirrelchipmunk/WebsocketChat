@@ -9,6 +9,7 @@ import com.exam.ws.handler.ChatHandler;
 
 import lombok.RequiredArgsConstructor;
 
+
 @Configuration
 @RequiredArgsConstructor
 @EnableWebSocket
@@ -17,7 +18,14 @@ public class WebSocketConfig implements WebSocketConfigurer {
     private final ChatHandler chatHandler;
 
     @Override
-    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(chatHandler, "/chat").setAllowedOrigins("*");
+    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) { 
+    	registry.addHandler(chatHandler, "/chat")
+			.setAllowedOrigins("*");
+    	
+    	registry.addHandler(chatHandler, "/chat")
+    		.setAllowedOriginPatterns("*")   //  setAllowedOrigin 오류
+    		.withSockJS();
     }
 }
+
+
